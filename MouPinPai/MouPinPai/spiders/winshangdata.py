@@ -35,7 +35,7 @@ class WinshangdataSpider(scrapy.Spider):
 
     def start_requests(self) -> Iterable[Request]:
         # 请求1-82页的内容
-        for page in range(1, 2):
+        for page in range(1, 82):
             # 构造载荷
             param = {
                 "isHaveLink": "",
