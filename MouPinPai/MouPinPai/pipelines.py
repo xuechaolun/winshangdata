@@ -17,7 +17,7 @@ class MoupinpaiPipeline:
     # 处理从爬虫文件传过来的item
     def process_item(self, item, spider):
         if spider.name == 'winshangdata':
-            print(item)
+            # print(item)
             self.coll.insert_one(item)
         return item
 

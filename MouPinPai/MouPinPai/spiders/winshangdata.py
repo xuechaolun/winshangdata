@@ -64,12 +64,13 @@ class WinshangdataSpider(scrapy.Spider):
             # 获取brandId值并拼接详情页的url
             detail_url = f'http://www.winshangdata.com/brandDetail?brandId={item["brandId"]}'
             # 发送get请求
-            yield Request(url=detail_url, headers=self.headers, callback=self.detail_parse)
+            yield Request(url=detail_url, headers=self.headers, callback=self.detail_parse, cb_kwargs={'brandName': item['brandName']})
 
     def detail_parse(self, response: HtmlResponse, **kwargs):
         # 获取li标签的列表
         li_list = response.xpath('//ul[@class="detail-option border-b"]/li')
         temp = dict()
+        temp.update({'品牌': kwargs["brandName"]})
         # 遍历每一个列表并提取所需字段
         for li in li_list:
             key = li.xpath('./span[1]/text()').extract_first().strip().replace('：', '')
