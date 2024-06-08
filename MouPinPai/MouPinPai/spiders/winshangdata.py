@@ -77,8 +77,7 @@ class WinshangdataSpider(scrapy.Spider):
             # print({key: val})
             if key == '创立时间' or key == '开店方式' or key == '合作期限' or key == '面积要求':
                 temp.update({key: val})
-        print(temp)
-        return temp
+        yield temp
 
 
 if __name__ == '__main__':
